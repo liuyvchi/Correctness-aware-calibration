@@ -68,20 +68,3 @@ Contributions to the project are welcome. Please fork the repository, make your 
 
 This project is open source and available under the [MIT License](LICENSE.md).
 
-## Citation
-
-If you use this code or our results in your research, please cite as:
-
-```bibtex
-@article{YourPaper2024,
-  title={Optimizing Calibration by Gaining Aware of Prediction Correctness},
-  author={Author Names},
-  journal={Journal Name},
-  year={2024},
-  publisher={Publisher}
-}
-```
-
----
-
-This README is designed to be comprehensive, guiding users through installation, configuration, and usage, making it easier for them to get started with your project. Adjust the details as necessary based on your specific project requirements and structure.
