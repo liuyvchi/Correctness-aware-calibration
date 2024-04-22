@@ -56,14 +56,6 @@ To start the calibration process, simply run the following command from the term
 python run_cal.py
 ```
 
-## Figures
-
-The repository includes four figures which are vital for understanding the output and operation of the algorithms used. Make sure to review these for better insights into the calibration results.
-
-## Contributing
-
-Contributions to the project are welcome. Please fork the repository, make your changes, and submit a pull request for review.
-
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.md).
