@@ -56,6 +56,20 @@ To start the calibration process, simply run the following command from the term
 python run_cal.py
 ```
 
+## Citation
+If you find our code helpful, please consider citing our paper:
+
+```bibtex
+@misc{liu2024optimizing,
+      title={Optimizing Calibration by Gaining Aware of Prediction Correctness}, 
+      author={Yuchi Liu and Lei Wang and Yuli Zou and James Zou and Liang Zheng},
+      year={2024},
+      eprint={2404.13016},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
+
 ## License
 
 This project is open source and available under the [MIT License](LICENSE.md).
