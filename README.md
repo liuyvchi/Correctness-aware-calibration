@@ -2,6 +2,9 @@
 
  [Yuchi Liu](https://liuyvchi.github.io/), [Lei Wang](https://leiwangr.github.io/), [Yuli Zou](https://scholar.google.com/citations?user=QPUPu2gAAAAJ&hl=zh-CN), [James Zou](https://www.james-zou.com/), [Liang Zheng](https://zheng-lab.cecs.anu.edu.au)
 
+<a href="https://arxiv.org/pdf/2404.13016"><img src="https://img.shields.io/badge/Paper-arXiv-red?style=for-the-badge" height=22.5></a>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 This repository contains the source code for the paper "Optimizing Calibration by Gaining Aware of Prediction Correctness." 
 
 ![Figure 1](./comparison.png)
