@@ -153,7 +153,7 @@ class Temperature_adaptive(nn.Module):
         mse_criterion = nn.MSELoss().cuda()
         ece_criterion = _ECELoss(n_bins=25).cuda()
         ece_criterion_conf = ECE._ECELoss(n_bins=25)
-        mse_criterion = nn.MSELoss(reduction='none').cuda()  # mseloss使confidence和对错接近
+        mse_criterion = nn.MSELoss(reduction='none').cuda()  # mseloss make confidence be close to correctness
         correctness_criterion = nn.BCELoss(reduction='none').cuda()
 
         # Calculate NLL and ECE before temperature scaling
@@ -163,10 +163,10 @@ class Temperature_adaptive(nn.Module):
 
         optimizer = optim.Adam(self.parameters(), lr=0.0001)
         
-        # 将数据和标签封装成 TensorDataset
+        # TensorDataset
         dataset = TensorDataset(torch.cat((logits, temp_arg), dim=-1), labels)
 
-        # 创建数据加载器
+        # create data_loader
         batch_size = 1000
         data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
