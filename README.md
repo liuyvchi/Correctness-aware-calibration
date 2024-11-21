@@ -38,7 +38,8 @@ To use the provided models and scripts, you will need to prepare your data accor
 │   └── ObjectNet
 └── modelOutput
     ├── imagenet_a_out_colorjitter
-    │   └── tv_reesnet152.npy
+    │   ├── tv_reesnet152.npy
+    │   └── ... 
     ├── imagenet_a_out_grey
     ├── imagenet_a_out_colorjitter
     └── ...
