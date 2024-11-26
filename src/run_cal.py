@@ -596,7 +596,7 @@ def test(test_loader, valid_loader, device, save_path, d_name='a', m_name='Resne
     confidence_test = softmax_test.max(dim=-1)[0]
     
     #compute measurement for before calibration
-    erros_uncal = all_meausres(confidence_test.numpy(), correctness_test.numpy())
+    erros_uncal = all_meausres(softmax_test.numpy(), correctness_test.numpy())
     temperature_model.eval()
 
     # logits_cal_test = TS_model(logits_test.cuda())
@@ -609,7 +609,7 @@ def test(test_loader, valid_loader, device, save_path, d_name='a', m_name='Resne
 
     print("cal")
     #compute measurement for after calibration
-    erros_cal = all_meausres(confidence_cal_test.numpy(), correctness_test.numpy())
+    erros_cal = all_meausres(softmax_cal_test.numpy(), correctness_test.numpy())
 
     # save data to pickle file
     with open('%s/%s_%s_%s_temperature.pkl' % (save_path, d_name, m_name, method), 'wb') as f:
