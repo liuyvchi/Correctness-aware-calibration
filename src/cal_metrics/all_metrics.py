@@ -169,12 +169,60 @@ def MCE(conf, correctness, conf_bin_num = 10):
         
     return mce
 
+
 def brier_score(y_pred, y):
     # y_one_hot = label_binarize(y, classes=np.arange(len(y_pred[0])))
     loss = mean_squared_error(y, y_pred)
     return loss
 
-def all_meausres(confs, correctness, conf_bins = 25, knn_bins=15):
+def brier_score_multiClass(y_pred, y):
+    
+    y_one_hot = np.eye(y_pred.shape[1])[y]
+    # Compute the squared difference between probabilities and one-hot encoded labels
+    squared_diff = (y_pred - y_one_hot) ** 2
+    # Compute the mean over all samples and classes
+    loss = np.mean(squared_diff)
+    # loss = brier_score_loss(y_one_hot, y_pred)
+    return loss
+
+
+def compute_sce(softmax_probs, labels, num_bins=25):
+    """
+    Compute the Static Calibration Error (SCE).
+    
+    Parameters:
+        softmax_probs (numpy.ndarray): Softmax probability vectors, shape (N, K),
+                                       where N is the number of samples and K is the number of classes.
+        labels (numpy.ndarray): Ground truth labels, shape (N,).
+        num_bins (int): Number of bins to divide the probabilities into.
+    
+    Returns:
+        float: The computed SCE value.
+    """
+    N, K = softmax_probs.shape
+    bin_edges = np.linspace(0, 1, num_bins + 1)  # Define bin edges
+    sce = 0.0  # Initialize SCE
+    
+    for k in range(K):  # Iterate over each class
+        class_probs = softmax_probs[:, k]
+        class_labels = (labels == k).astype(int)  # Binary labels for class k
+        
+        for b in range(num_bins):  # Iterate over each bin
+            bin_mask = (class_probs > bin_edges[b]) & (class_probs <= bin_edges[b + 1])
+            n_bk = np.sum(bin_mask)
+            
+            if n_bk > 0:  # Avoid division by zero
+                acc_bk = np.mean(class_labels[bin_mask])
+                conf_bk = np.mean(class_probs[bin_mask])
+                sce += (n_bk / N) * abs(acc_bk - conf_bk)
+    
+    sce /= K  # Average over all classes
+    return sce
+
+
+def all_meausres(softmax_v, labels, correctness, conf_bins = 25, knn_bins=15):
+    confs = np.max(softmax_v, axis=1)
+
     ece_criterion = _ECELoss(n_bins=25)
     ece = ece_criterion.eval(confs, correctness, assign_index=True)
     bs = brier_score(confs, correctness)
@@ -182,6 +230,6 @@ def all_meausres(confs, correctness, conf_bins = 25, knn_bins=15):
     mce = MCE(confs, correctness, conf_bin_num = conf_bins)
     auc = roc_auc_score(correctness, confs)
     ks = KS_error_from_conf_acc(correctness, confs)
+    sce = compute_sce(softmax_v, labels, num_bins=25)
     
-    return {'ece':ece, 'bs':bs, 'ace':ace, 'mce':mce, 'auc':auc, 'ks':ks}
-    
+    return {'ece':ece, 'bs':bs, 'ace':ace, 'mce':mce, 'auc':auc, 'ks':ks, 'sce':sce}
