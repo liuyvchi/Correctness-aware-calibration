@@ -5,7 +5,7 @@
 <a href="https://arxiv.org/pdf/2404.13016"><img src="https://img.shields.io/badge/Paper-arXiv-red?style=for-the-badge" height=22.5></a>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This repository contains the source code for the paper "Optimizing Calibration by Gaining Aware of Prediction Correctness." 
+This repository contains the source code for the paper "Optimizing Calibration by Gaining Aware of Prediction Correctness."   
 
 ![Figure 1](./comparison.png)
 
