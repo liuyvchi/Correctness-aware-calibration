@@ -41,7 +41,9 @@ To use the provided models and scripts, you will need to prepare your data accor
     │   ├── tv_reesnet152.npy
     │   └── ... 
     ├── imagenet_a_out_grey
-    ├── imagenet_a_out_colorjitter
+    ├── imagenet_a_out_rotation
+    ├── ...
+    ├── imagenet_r_out_colorjitter
     └── ...
 |── ckpt
 └── src
